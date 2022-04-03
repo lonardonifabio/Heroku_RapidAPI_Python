@@ -8,13 +8,14 @@ from forms import UrlSearchForm
 
 from newspaper import Article
 from wordcloud import WordCloud
+from textblob import TextBlob
 
 import base64
 import io
 import datetime
 
 def get_wordcloud(text):
-    pil_img = WordCloud().generate(text=text).to_image()
+    pil_img = WordCloud(max_font_size=50, max_words=100, background_color="white").generate(text=text).to_image()
     img = io.BytesIO()
     pil_img.save(img, "PNG")
     img.seek(0)
@@ -27,9 +28,7 @@ app = Flask(__name__)
 def index():
     errors = []
     urlsearch = UrlSearchForm(request.form)
-
     if request.method == "POST":
-        
         try:
             return search_results(urlsearch)
         except:
@@ -55,7 +54,9 @@ def search_results(urlsearch):
     cloud = get_wordcloud(data)
     keyword = article.keywords
     summary = article.summary
-    return render_template("results.html", search_string = search_string, title = title, published_date=published_date, author = author, image = image, keyword = keyword, summary = summary, cloud = cloud)
+    blob = TextBlob(data)
+    sentiment = blob.sentiment
+    return render_template("results.html", search_string = search_string, title = title, summary = summary, image = image, published_date=published_date, author = author, keyword = keyword, cloud = cloud, sentiment = sentiment)
 
 if __name__ == '__main__':
       app.run()
