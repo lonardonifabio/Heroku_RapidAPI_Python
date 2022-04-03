@@ -6,47 +6,46 @@
       <table class="table table-light mb-0">
          <tbody>
             <tr>
-               <td class="col1">Title</td>
+               <td class="col1"><b>Title</b></td>
                <td class="col2"><a href="{{ search_string }}" target="_blank">{{ title }}</a></td>
             </tr>
-
+         </tbody>
+      </table>
+      <table class="table table-light mb-0">
+         <tbody>
             <tr>
-               <td>Summary</td>
-               <td>{{ summary }}</td>
+               <td><b>Published date</b></td>
+               <td>{{ published_date }}</td>
+               <td><b>Author</b></td>
+               <td>{{ author }}</td>
             </tr>
-            
             <tr>
-               <td>Top image</td>
+               <td><b>Summary</b></td>
+               <td>{{ summary }}</td>
+               <td><b>Image</b></td>
                <td><img id="crop" src="{{ image }}"></td>
             </tr>
 
             <tr>
-               <td>Published date</td>
-               <td>{{ published_date }}</td>
-            </tr>
-
-            <tr>
-               <td>Author</td>
-               <td>{{ author }}</td>
-            </tr>
-
-            <tr>
-               <td>Keywords</td>
+               <td><b>Cloud</b></td>
+               <td><img src="data:image/png;base64,{{cloud}}"></td>
+               <td><b>Keywords</b></td>
                <td>{{ keyword }}</td>
             </tr>
 
             <tr>
-               <td>Cloud</td>
-               <td><img src="data:image/png;base64,{{cloud}}"></td>
-            </tr>
-
-            <tr>
-               <td>Sentiment analysis</td>
-               <td>{{ sentiment }}</td>
+               <td><b>Sentiment analysis</b></td>
+               <td>{{ sentiment }} </td>
+               <td><b>Note</b></td>
+               <td><b>Polarity</b> is a float that lies between [-1,1], -1 indicates negative sentiment and +1 indicates positive sentiments.<br></br><b>Subjectivity</b> is also a float which lies in the range of [0,1]. Subjective sentences generally refer to personal opinion, emotion, or judgment</td>
             </tr>
 
          </tbody>
       </table>
    </div>
 </div>
+<form method="post" action='https://hyper-text-analysis.herokuapp.com/'>
+   </p><input name="urllink" class="btn btn-primary btn-lg" type=submit value="Try Again">
+</form>
+<br></br>
 {% endblock %}
