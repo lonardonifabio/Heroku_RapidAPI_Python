@@ -79,7 +79,7 @@ input:focus {
 }
 #analyze {
     background-color: #0a6449;
-    border:  none;
+    border:  groove;
     width:  200px;
     color: white;
 }
