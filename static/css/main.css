@@ -1,7 +1,7 @@
 /* for all HTML */
 
 .container {
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(255, 255, 255);
 }
 
 h4 {
@@ -31,14 +31,30 @@ span {
 }
 
 .errormsg {
-    color: red;
+    color: rgb(185, 126, 15);
     padding-top: 0;
 }
 
+input {
+    width: 300px;
+    margin: 20px 20px;
+    height: 50px;
+    border: groove;
+    border-color: #0a6449;
+    border-radius: 10px;
+    font-family: Shanti;
+    font-size: 1.3em;
+    text-align: center;
+  }
+
+input:focus {
+    outline: none;
+    border: solid 5px #0a6449;
+}
 /* for results page */
 
 .result {
-    background-color: lightblue;
+    background-color: #0a6449;
 }
 
 #crop {
@@ -56,4 +72,18 @@ span {
 
 .resultspage {
     text-align: left;
+}
+
+.btn {
+    background-color: #0a6449;
+}
+#analyze {
+    background-color: #0a6449;
+    border:  none;
+    width:  200px;
+    color: white;
+}
+
+#analyze:hover {
+    background-color: #0a6449;
 }

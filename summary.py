@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import os
 import requests
 from forms import UrlSearchForm
+import csv
 
 # import nltk
 # nltk.data.path.append('./nltk_data/')
@@ -33,7 +34,7 @@ def index():
             return search_results(urlsearch)
         except:
             errors.append(
-                "Unable to get the URL.  Please enter a valid URL for news article."
+                "Please enter the URL of your news article."
             )       
     return render_template("index.html", form = urlsearch, errors = errors)
 
@@ -60,3 +61,4 @@ def search_results(urlsearch):
 
 if __name__ == '__main__':
       app.run()
+
