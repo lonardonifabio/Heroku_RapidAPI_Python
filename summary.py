@@ -4,6 +4,7 @@ import requests
 from forms import UrlSearchForm
 import csv
 
+
 # import nltk
 # nltk.data.path.append('./nltk_data/')
 
@@ -57,6 +58,11 @@ def search_results(urlsearch):
     summary = article.summary
     blob = TextBlob(data)
     sentiment = blob.sentiment
+    row = [search_string,title,summary,published_date,author,keyword,sentiment]
+    f = open('news.csv', 'a',newline='')
+    writer = csv.writer(f)
+    writer.writerow(row)
+    f.close()
     return render_template("results.html", search_string = search_string, title = title, summary = summary, image = image, published_date=published_date, author = author, keyword = keyword, cloud = cloud, sentiment = sentiment)
 
 if __name__ == '__main__':
