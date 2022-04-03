@@ -57,9 +57,7 @@ def search_results(urlsearch):
     author = article.authors[0]
 
     image = article.top_image
-
-    # WordCloud disabled for now
-    # cloud = get_wordcloud(data)
+    cloud = get_wordcloud(data)
     keyword = article.keywords
 
     summary = article.summary
