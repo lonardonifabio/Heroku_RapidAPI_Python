@@ -42,26 +42,19 @@ def index():
 def search_results(urlsearch):
     urlsearch = UrlSearchForm(request.form)
     search_string = urlsearch.data['search']
-
     article = Article(search_string)
-
     article.download()
     article.parse()
-    # nltk.download("punkt")
     article.nlp()
-
     data = article.text
     title = article.title
     date = article.publish_date
     published_date = date.strftime("%d %B %Y")
     author = article.authors[0]
-
     image = article.top_image
     cloud = get_wordcloud(data)
     keyword = article.keywords
-
     summary = article.summary
-
     return render_template("results.html", search_string = search_string, title = title, published_date=published_date, author = author, image = image, keyword = keyword, summary = summary, cloud = cloud)
 
 if __name__ == '__main__':
