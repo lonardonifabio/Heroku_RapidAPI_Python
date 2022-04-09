@@ -5,9 +5,6 @@ from forms import UrlSearchForm
 import csv
 
 
-# import nltk
-# nltk.data.path.append('./nltk_data/')
-
 from newspaper import Article
 from wordcloud import WordCloud
 from textblob import TextBlob
@@ -39,7 +36,7 @@ def index():
             )       
     return render_template("index.html", form = urlsearch, errors = errors)
 
-# @app.route("/results", methods = ["GET", "POST"])
+
 def search_results(urlsearch):
     urlsearch = UrlSearchForm(request.form)
     search_string = urlsearch.data['search']
