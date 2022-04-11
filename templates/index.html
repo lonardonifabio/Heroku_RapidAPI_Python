@@ -4,13 +4,13 @@
 <h6>Please, insert the url of the news article you want analyze:</h6>
 
 {% from "_formhelpers.html" import render_field %}
-<form method="post" action='submit'>
+<form method="post" action=''>
 
     <dl>
         <p>
             {{ render_field(form.search) }}
     </dl>
-    </p><input name="submit" class="btn btn-primary btn-lg" type=submit value="Submit" id="submit">
+    </p><input name="submit" class="btn btn-primary btn-lg" type=submit value="submit" id="submit">
 </form>
 <br>
 
