@@ -5,7 +5,6 @@ from forms import UrlSearchForm
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
 
-
 from newspaper import Article
 from wordcloud import WordCloud
 from textblob import TextBlob
@@ -17,7 +16,7 @@ import datetime
 app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://pdvopmbizwkwfn:8d748dcfd72c2963abea2783e02ce10d8a4481d7682f5137942ed3356315ec5d@ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/dbb1sldknq385f'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://daluiabbqtolsc:2611c3cce8f817e08e4ab54b5d154578cbf2b844881ab0a153eeea5cd9e910ab@ec2-3-248-121-12.eu-west-1.compute.amazonaws.com:5432/del69k9spqp830'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
 class News(db.Model):
