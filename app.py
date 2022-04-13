@@ -3,6 +3,8 @@ import os
 import requests
 from forms import UrlSearchForm
 from flask_sqlalchemy import SQLAlchemy
+from datetime import date
+
 
 from newspaper import Article
 from wordcloud import WordCloud
@@ -23,15 +25,17 @@ class News(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200))
     author = db.Column(db.String(200))
-    link = db.Column(db.String(1000), unique=True)
+    #link = db.Column(db.String(1000), unique=True)
+    link = db.Column(db.String(1000))
     summary = db.Column(db.String(2000))
     tag = db.Column(db.String(200))
     sentiment = db.Column(db.String(1000))
     imgLnk = db.Column(db.String(1000))
     date = db.Column(db.String(200))
+    today = db.Column(db.String(200))
 
     
-    def __init__(self, title, author, link, summary, tag, sentiment, imglink, date):
+    def __init__(self, title, author, link, summary, tag, sentiment, imglink, date, today):
         self.title = title
         self.author = author 
         self.link = link
@@ -40,6 +44,7 @@ class News(db.Model):
         self.sentiment = sentiment
         self.imgLnk = imglink
         self.date = date
+        self.today = today
 
 def get_wordcloud(text):
     pil_img = WordCloud(max_font_size=50, max_words=100, background_color="white").generate(text=text).to_image()
@@ -59,7 +64,7 @@ def index():
     urlsearch = UrlSearchForm(request.form)
     #return search_results(urlsearch)
     #urlsearch = request.args.get("search")
-    print (urlsearch)
+    #print (urlsearch)
     if request.method == "POST":
         try:
             return search_results(urlsearch)
@@ -92,6 +97,7 @@ def search_results(urlsearch):
     summary = article.summary
     blob = TextBlob(data)
     sentiment = blob.sentiment
+    today = date.today()
     #print ("Fields")
     #print (title)
     #print (author)
@@ -101,12 +107,12 @@ def search_results(urlsearch):
     #print (sentiment)
     #print (imglink)
     #print (date)
-    if link == '':
+    #if link == '':
         #print("first")
-        return render_template("index.html", form = urlsearch, errors = errors)
+        #return render_template("index.html", form = urlsearch, errors = errors)
     #if db.session.query(News).filter(News.link == search_string).count() == 0:
-    elif link != '':
-        dataexport = News(title, author, link, summary, tag, sentiment, imglink, date)
+    if link != '':
+        dataexport = News(title, author, link, summary, tag, sentiment, imglink, date, today)
         #print("second")
         #print (dataexport)
         db.session.add(dataexport)
