@@ -13,7 +13,8 @@ import io
 import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://pdvopmbizwkwfn:8d748dcfd72c2963abea2783e02ce10d8a4481d7682f5137942ed3356315ec5d@ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/dbb1sldknq385f'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://pdvopmbizwkwfn:8d748dcfd72c2963abea2783e02ce10d8a4481d7682f5137942ed3356315ec5d@ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/dbb1sldknq385f'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://daluiabbqtolsc:2611c3cce8f817e08e4ab54b5d154578cbf2b844881ab0a153eeea5cd9e910ab@ec2-3-248-121-12.eu-west-1.compute.amazonaws.com:5432/del69k9spqp830'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
@@ -48,8 +49,6 @@ def get_wordcloud(text):
     img_b64 = base64.b64encode(img.getvalue()).decode()
     return img_b64
 
-
-
 #from app import db
 #db.create_all()
 #db.session.commit()
@@ -59,6 +58,8 @@ def index():
     errors = []
     urlsearch = UrlSearchForm(request.form)
     #return search_results(urlsearch)
+    #urlsearch = request.args.get("search")
+    print (urlsearch)
     if request.method == "POST":
         try:
             return search_results(urlsearch)
@@ -72,6 +73,7 @@ def index():
 def search_results(urlsearch):
     urlsearch = UrlSearchForm(request.form)
     search_string = urlsearch.data['search']
+    #search_string = request.args.get("search")
     link = search_string
     article = Article(search_string)
     article.download()
@@ -90,29 +92,29 @@ def search_results(urlsearch):
     summary = article.summary
     blob = TextBlob(data)
     sentiment = blob.sentiment
-    #print ("Fields")
-    #print (title)
-    #print (author)
-    #print (link)
-    #print (summary)
-    #print (tag)
-    #print (sentiment)
-    #print (imglink)
-    #print (date)
+    print ("Fields")
+    print (title)
+    print (author)
+    print (link)
+    print (summary)
+    print (tag)
+    print (sentiment)
+    print (imglink)
+    print (date)
     if link == '':
-        #print("first")
+        print("first")
         return render_template("index.html", form = urlsearch, errors = errors)
     #if db.session.query(News).filter(News.link == search_string).count() == 0:
-    dataexport = News(title, author, link, summary, tag, sentiment, imglink, date)
-    #print("second")
-    #print (dataexport)
-    db.session.add(dataexport)
-    #print ("DB-before commit")
-    db.session.commit()
-    #print ("commit")
-    return render_template("results.html", search_string = search_string, title = title, summary = summary, image = image, published_date=published_date, author = author, keyword = keyword, cloud = cloud, sentiment = sentiment)
-    #return render_template("index.html", form = urlsearch, errors = errors)
+    elif link != '':
+        dataexport = News(title, author, link, summary, tag, sentiment, imglink, date)
+        print("second")
+        print (dataexport)
+        db.session.add(dataexport)
+        print ("DB-before commit")
+        db.session.commit()
+        print ("commit")
+        return render_template("results.html", search_string = search_string, title = title, summary = summary, image = image, published_date=published_date, author = author, keyword = keyword, cloud = cloud, sentiment = sentiment)
+    return render_template("index.html", form = urlsearch, errors = errors)
 
 if __name__ == '__main__':
       app.run()
-
