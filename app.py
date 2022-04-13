@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request
 import os
+from flask.templating import render_template_string
 import requests
 from forms import UrlSearchForm
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.engine import result
 from datetime import date
 
 from newspaper import Article
@@ -63,7 +65,12 @@ def index():
     urlsearch = UrlSearchForm(request.form)
     #return search_results(urlsearch)
     #urlsearch = request.args.get("search")
-    #print (urlsearch)
+    headings = ("Title", "Published Date", "Author","Keywords","Sentiment Analysis")
+    #datafive = (("Mario", "22/07/1982", "Faust", "tag,fdfd,vdfsfds,ffds", "0.8"),("fafa", "22/07/1982", "Faust", "tag,fdfd,vdfsfds,ffds", "0.8"),("ccc", "22/07/1982", "Faust", "tag,fdfd,vdfsfds,ffds", "0.8"),)
+    datafive = db.session.query(News.title,News.date,News.author,News.tag,News.sentiment).order_by(News.today.desc()).limit(5).all()
+    #query = db.session.query([News.title, News.date, News.author, News.tag, News.sentiment]).all()
+    #datafive = engine.execute(query).fetchall()
+    #.filter(News.link == search_string).count() == 0:
     if request.method == "POST":
         try:
             return search_results(urlsearch)
@@ -71,7 +78,7 @@ def index():
             errors.append(
                 "Please enter the URL of your news article."
             )       
-    return render_template("index.html", form = urlsearch, errors = errors)
+    return render_template("index.html", form = urlsearch, errors = errors, headings = headings, datafive = datafive)
 
 
 def search_results(urlsearch):
