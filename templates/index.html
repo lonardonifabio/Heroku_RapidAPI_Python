@@ -14,6 +14,23 @@
 </form>
 <br>
 
+<h4>Top 5 news analyzed</h4>
+
+<table class="table table-light mb-0">
+    <tr>
+        {% for header in headings %}
+        <th>{{ header }}</th>
+        {% endfor %}
+    </tr>
+    {% for row in datafive %}
+    <tr>
+        {% for cell in row %}
+        <td>{{ cell }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
 {% for error in errors %}
 <h4 class="errormsg">{{ error }}</h4>
 {% endfor %}
