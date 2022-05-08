@@ -1,0 +1,185 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="resultspage">
+    <div class="container table-responsive result p-3 mb-3 mt-3">
+        <table class="table table-light mb-0">
+            <tbody>
+                <tr>
+                    <td class="col1"><b>Title</b></td>
+                    <td class="col2"><a href="{{ search_string }}" target="_blank">{{ title }}</a></td>
+                </tr>
+                <tr>
+                    <td><b>Published date</b></td>
+                    <td>{{ published_date }}</td>
+                    <td><b>Author</b></td>
+                    <td>{{ author }}</td>
+                </tr>
+                <tr>
+                    <td><b>Summary</b></td>
+                    <td>{{ summary }}</td>
+                    <td><b>Image</b></td>
+                    <td><img id="crop" src="{{ image }}"></td>
+                </tr>
+
+                <tr>
+                    <td><b>Cloud</b></td>
+                    <td><img src="data:image/png;base64,{{cloud}}"></td>
+                    <td><b>Keywords</b></td>
+                    <td>{{ keyword }}</td>
+                </tr>
+
+                <tr>
+                    <td><b>Sentiment analysis</b></td>
+                    <td>{{ sentiment }} </td>
+                    <td><b>Note</b></td>
+                    <td><b>Polarity</b> is a float that lies between [-1,1], -1 indicates negative sentiment and +1 indicates positive sentiments.<br></br><b>Subjectivity</b> is also a float which lies in the range of [0,1]. Subjective sentences generally refer to personal opinion, emotion, or judgment</td>
+                </tr>
+
+                <tr>
+                    <td><b>coordinating conjunction</b></td>
+                    <td>{{ xCC }} </td>
+                    <td><b>cardinal digit</b></td>
+                    <td>{{ xCD }} </td>
+                </tr>
+
+                <tr>
+                    <td><b>determiner</b></td>
+                    <td>{{ xDT }} </td>
+                    <td><b>existential there</b></td>
+                    <td>{{ xEX }} </td>
+                </tr>
+
+                <tr>
+                    <td><b>foreign word</b></td>
+                    <td>{{ xFW }} </td>
+                    <td><b>preposition/subordinating conjunction</b></td>
+                    <td>{{ xIN }} </td>
+                </tr>
+
+                <tr>
+                    <td><b>This NLTK POS Tag is an adjective (large)</b></td>
+                    <td>{{ xJJ }} </td>
+                    <td><b>adjective, comparative (larger)</b></td>
+                    <td>{{ xJJR }} </td>
+                </tr>
+
+                <tr>
+                    <td><b>adjective, superlative (largest)</b></td>
+                    <td>{{ xJJS }} </td>
+                    <td><b>list market</b></td>
+                    <td>{{ xLS }} </td>
+                </tr>
+
+                <tr>
+                    <td><b>modal (could, will)</b></td>
+                    <td>{{ xMD }} </td>
+                    <td><b>noun, singular (cat, tree)</b></td>
+                    <td>{{ xNN }} </td>
+                </tr>
+
+                <tr>
+                    <td><b>noun plural (desks)</b></td>
+                    <td>{{ xNNS }} </td>
+                    <td><b>proper noun, singular (sarah)</b></td>
+                    <td>{{ xNNP }} </td>
+                </tr>
+
+                <tr>
+                    <td><b>proper noun, plural (indians or americans)</b></td>
+                    <td>{{ xNNPS }} </td>
+                    <td><b>predeterminer (all, both, half)</b></td>
+                    <td>{{ xPDT }} </td>
+                </tr>
+
+
+                <tr>
+                    <td><b>possessive ending (parent\ ‘s)</b></td>
+                    <td>{{ xPOS }} </td>
+                    <td><b>personal pronoun (hers, herself, him, himself)</b></td>
+                    <td>{{ xPRP }} </td>
+                </tr>
+
+                <tr>
+                    <td><b>possessive pronoun (her, his, mine, my, our )</b></td>
+                    <td>{{ xPRP2 }} </td>
+                    <td><b>adverb (occasionally, swiftly)</b></td>
+                    <td>{{ xRB }} </td>
+                </tr>
+
+                <tr>
+                    <td><b>adverb, comparative (greater)</b></td>
+                    <td>{{ xRBR }} </td>
+                    <td><b>adverb, superlative (biggest)</b></td>
+                    <td>{{ xRBS }} </td>
+                </tr>
+
+                <tr>
+                    <td><b>particle (about)</b></td>
+                    <td>{{ xRP }} </td>
+                    <td><b>infinite marker (to)</b></td>
+                    <td>{{ xTO }} </td>
+                </tr>
+
+                <tr>
+                    <td><b>interjection (goodbye)</b></td>
+                    <td>{{ xUH }} </td>
+                    <td><b>verb (ask)</b></td>
+                    <td>{{ xVB }} </td>
+                </tr>
+
+                <tr>
+                    <td><b>verb gerund (judging)</b></td>
+                    <td>{{ xVBG }} </td>
+                    <td><b>verb past tense (pleaded)</b></td>
+                    <td>{{ xVBD }} </td>
+                </tr>
+
+                <tr>
+                    <td><b>verb past participle (reunified)</b></td>
+                    <td>{{ xVBN }} </td>
+                    <td><b>verb, present tense not 3rd person singular(wrap)</b></td>
+                    <td>{{ xVBP }} </td>
+                </tr>
+
+                <tr>
+                    <td><b>verb, present tense with 3rd person singular (bases)</b></td>
+                    <td>{{ xVBZ }} </td>
+                    <td><b>wh-determiner (that, what)</b></td>
+                    <td>{{ xWDT }} </td>
+                </tr>
+
+                <tr>
+                    <td><b>wh- pronoun (who)</b></td>
+                    <td>{{ xWP }} </td>
+                    <td><b>wh- adverb (how)</b></td>
+                    <td>{{ xWRB }} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<form method="post" action=''>
+    </p><input name="TryAgain" class="btn btn-primary btn-lg" type=submit value="TryAgain">
+</form>
+<br></br>
+{% endblock %}
+
+
+
+
+    is_POS = lambda pos: pos[:2] == 'POS'
+    #xPOSList = [wordv for (wordv, pos) in nltk.pos_tag(tokenized) if is_POS(pos)]
+    xPOSList = ['a','a','a','v','c']
+    xPOSL = ""
+    xPOSL = xPOSL.join(xPOSList)
+    #for i in xPOSList:
+    #xPOSL = xPOSL.join(xPOSList)
+    xPOS = Counter(xPOSL)
+    print(xPOSList)
+    print(xPOSL)
+    print(xPOS)
+    #for i in xPOSL:
+        #xPOS=xPOS+i+" "
+    #xPOS = xPOS.decode("utf-8")
+        #print(xPOS)

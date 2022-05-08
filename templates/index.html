@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<h6>Please, insert the url of the news article you want analyze:</h6>
+<h6>Please insert the url of the news article you want analyze:</h6>
 
 {% from "_formhelpers.html" import render_field %}
 <form method="post" action=''>
@@ -10,12 +10,15 @@
         <p>
             {{ render_field(form.search) }}
     </dl>
-    </p><input name="submit" class="btn btn-primary btn-lg" type=submit value="submit" id="submit">
+    </p><input name="submit" class="btn btn-primary btn-lg" type=submit value="Submit" id="submit">
 </form>
 <br>
-
-<h4>Top 5 news analyzed</h4>
-
+{% for error in errors %}
+<h4 class="errormsg">{{ error }}</h4>
+{% endfor %}
+<br>
+<h4>Last 10 news analyzed</h4>
+<br>
 <table class="table table-light mb-0">
     <tr>
         {% for header in headings %}
@@ -24,15 +27,11 @@
     </tr>
     {% for row in datafive %}
     <tr>
-        {% for cell in row %}
-        <td>{{ cell }}</td>
-        {% endfor %}
+        <td><a href="{{ row.1 }}" target="_blank">{{ row.0 }}</a></td>
+        <td>{{ row.2 }}</td>
+        <td>{{ row.3 }}</td>
     </tr>
     {% endfor %}
 </table>
-
-{% for error in errors %}
-<h4 class="errormsg">{{ error }}</h4>
-{% endfor %}
-
+<br>
 {% endblock %}
