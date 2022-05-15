@@ -28,12 +28,15 @@ span {
 }
 
 .table {
-    font-size: 12px;
+    width: auto;
+    height: auto;
+    text-align: left;
+    vertical-align: auto;
 }
 
 .form-url {
   border: 1;
-  font-size: 12px;
+  font-size: 24px;
   color: #012970;
   border: 1px solid rgba(1, 41, 112, 0.2);
   padding: 7px 38px 7px 8px;
@@ -75,27 +78,27 @@ input:focus {
 }
 
 .col1 {
-    width: 50%;
+    width: auto;
 }
 
 .col2 {
-    width: 50%;
+    width: 100%;
 }
 
 .col3 {
-    width: 50%;
+    width: 25%;
 }
 
 .col4 {
-    width: 50%;
+    width: 25%;
 }
 
 .col5 {
-    width: 50%;
+    width: 25%;
 }
 
 .col6 {
-    width: 50%;
+    width: 25%;
 }
 
 .resultspage {

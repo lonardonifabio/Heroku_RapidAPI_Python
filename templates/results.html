@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="resultspage">
-    <div class="container table-responsive result p-3 mb-3 mt-3">
+    <div class="container-fluid table-responsive result p-3 mb-3 mt-3">
         <table class="table table-light mb-0">
             <tbody>
                 <tr>
@@ -12,7 +12,7 @@
             </tbody>
         </table>
     </div>
-    <div class="container table-responsive result p-3 mb-3 mt-3">
+    <div class="container-fluid table-responsive result p-3 mb-3 mt-3">
         <table class="table table-light mb-0">
             <tbody>
                 <tr>
@@ -44,24 +44,155 @@
             </tbody>
         </table>
     </div>
-    <div class="container table-responsive result p-3 mb-3 mt-3">
+    <div class="container-fluid table-responsive result p-3 mb-3 mt-3">
         <br>
         <h4>Tag Analysis</h4>
         <h6>A TAG is used to assign grammatical information of each word of the article news</h6>
         <br>
         <table class="table table-light mb-0">
+            <!--<tr>
+        {% for header in headings %}
+        <th>{{ header }}</th>
+        {% endfor %}
+    </tr>
+    {% for row in dataloganal %}
+    <tr>
+        {% for cell in row %}
+        <td>{{ cell }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    -->
             <tr>
-                {% for header in headings %}
-                <th>{{ header }}</th>
-                {% endfor %}
+                <td class="col3"><b>Coordinating Conjunction</b></td>
+                <td class="col4">{{ xCC }} </td>
+                <td class="col3"><b>Cardinal Digit</b></td>
+                <td class="col4">{{ xCD }} </td>
             </tr>
-            {% for row in dataloganal %}
+
             <tr>
-                {% for cell in row %}
-                <td>{{ cell }}</td>
-                {% endfor %}
+                <td class="col3"><b>Determiner</b></td>
+                <td class="col4">{{ xDT }} </td>
+                <td class="col3"><b>Existential There</b></td>
+                <td class="col4">{{ xEX }} </td>
             </tr>
-            {% endfor %}
+
+            <tr>
+                <td class="col3"><b>Foreign Word</b></td>
+                <td class="col4">{{ xFW }} </td>
+                <td class="col3"><b>Preposition/Subordinating Conjunction</b></td>
+                <td class="col4">{{ xIN }} </td>
+            </tr>
+
+            <tr>
+                <td class="col3"><b>This NLTK POS Tag is an adjective (large)</b></td>
+                <td class="col4">{{ xJJ }} </td>
+                <td class="col3"><b>Adjective, Comparative (larger)</b></td>
+                <td class="col4">{{ xJJR }} </td>
+            </tr>
+
+            <tr>
+
+                <td class="col3"><b>Adjective Superlative (largest)</b></td>
+                <td class="col4">{{ xJJS }} </td>
+                <td class="col3"><b>List market</b></td>
+                <td class="col4">{{ xLS }} </td>
+            </tr>
+
+            <tr>
+
+                <td class="col3"><b>Modal (could, will)</b></td>
+                <td class="col4">{{ xMD }} </td>
+                <td class="col3"><b>Noun, singular (cat, tree)</b></td>
+                <td class="col4">{{ xNN }} </td>
+            </tr>
+
+            <tr>
+
+                <td class="col3"><b>Noun plural (desks)</b></td>
+                <td class="col4">{{ xNNS }} </td>
+                <td class="col3"><b>Proper noun, singular (sarah)</b></td>
+                <td class="col4">{{ xNNP }} </td>
+            </tr>
+
+            <tr>
+
+                <td class="col3"><b>Proper noun, plural (indians or americans)</b></td>
+                <td class="col4">{{ xNNPS }} </td>
+                <td class="col3"><b>Predeterminer (all, both, half)</b></td>
+                <td class="col4">{{ xPDT }} </td>
+            </tr>
+
+            <tr>
+
+                <td class="col3"><b>Possessive ending (parent\s)</b></td>
+                <td class="col4">{{ xPOS }} </td>
+                <td class="col3"><b>Personal pronoun (hers, herself, him, himself)</b></td>
+                <td class="col4">{{ xPRP }} </td>
+            </tr>
+
+            <tr>
+
+                <td class="col3"><b>Possessive pronoun (her, his, mine, my, our )</b></td>
+                <td class="col4">{{ xPRP2 }} </td>
+                <td class="col3"><b>Adverb, comparative (greater)</b></td>
+                <td class="col4">{{ xRBR }} </td>
+            </tr>
+
+            <tr>
+                <td class="col3"><b>Adverb, superlative (biggest)</b></td>
+                <td class="col4">{{ xRBS }} </td>
+                <td class="col3"><b>Adverb (occasionally, swiftly)</b></td>
+                <td class="col4">{{ xRB }} </td>
+            </tr>
+
+            <tr>
+
+                <td class="col3"><b>Particle (about)</b></td>
+                <td class="col4">{{ xRP }} </td>
+                <td class="col3"><b>Infinite marker (to)</b></td>
+                <td class="col4">{{ xTO }} </td>
+            </tr>
+
+            <tr>
+
+                <td class="col3"><b>Interjection (goodbye)</b></td>
+                <td class="col4">{{ xUH }} </td>
+                <td class="col3"><b>Verb (ask)</b></td>
+                <td class="col4">{{ xVB }} </td>
+            </tr>
+
+            <tr>
+
+                <td class="col3"><b>Verb gerund (judging)</b></td>
+                <td class="col4">{{ xVBG }} </td>
+                <td class="col3"><b>Verb past tense (pleaded)</b></td>
+                <td class="col4">{{ xVBD }} </td>
+            </tr>
+
+            <tr>
+
+                <td class="col3"><b>Verb past participle (reunified)</b></td>
+                <td class="col4">{{ xVBN }} </td>
+                <td class="col3"><b>Verb, present tense not 3rd person singular(wrap)</b></td>
+                <td class="col4">{{ xVBP }} </td>
+            </tr>
+
+            <tr>
+
+                <td class="col3"><b>Verb, present tense with 3rd person singular (bases)</b></td>
+                <td class="col4">{{ xWBZ }} </td>
+                <td class="col3"><b>Wh-determiner (that, what)</b></td>
+                <td class="col4">{{ xVDT }} </td>
+            </tr>
+
+            <tr>
+
+                <td class="col3"><b>Wh- pronoun (who)</b></td>
+                <td class="col4">{{ xWP }} </td>
+                <td class="col3"><b>Wh- adverb (how)</b></td>
+                <td class="col4">{{ xWRB }} </td>
+            </tr>
         </table>
         <br>
     </div>
